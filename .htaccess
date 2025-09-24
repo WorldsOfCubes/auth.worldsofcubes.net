@@ -1,0 +1,38 @@
+<Files *.md>
+Deny from all
+</Files>
+<Files log.txt>
+Deny from all
+</Files>
+<Files .git/>
+Deny from all
+</Files>
+
+ErrorDocument 404 /go/404
+ErrorDocument 403 /go/403
+
+<IfModule mod_rewrite.c>
+
+  RewriteEngine on
+RewriteCond %{HTTP_HOST} ^auth\.worldsofcubes\.ru$ [NC]
+RewriteRule ^(.*)$ https://auth.worldsofcubes.net/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^auth\.worldofcubes\.ru$ [NC]
+RewriteRule ^(.*)$ https://auth.worldsofcubes.net/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^auth\.worldsofcubes\.ru$ [NC]
+RewriteRule ^(.*)$ https://auth.worldsofcubes.net/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^auth\.wocubes\.net$ [NC]
+RewriteRule ^(.*)$ https://auth.worldsofcubes.net/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^auth\.wocubes\.ru$ [NC]
+RewriteRule ^(.*)$ https://auth.worldsofcubes.net/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^auth\.unicubes\.ru$ [NC]
+RewriteRule ^(.*)$ https://auth.worldsofcubes.net/$1 [R=301,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  RewriteCond %{REQUEST_URI} !=/favicon.ico
+
+  RewriteRule ^(.*)$ index.php?wocid=$1 [L,QSA]
+
+</IfModule>

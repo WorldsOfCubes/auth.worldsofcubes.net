@@ -1,0 +1,5 @@
+name=WorldsOfCubes Network theme; 
+version=3.0;
+author=WorldsOfCubes Team; 
+about=Закрытая тема, специально для WorldsOfCubes Network; 
+editable=no;

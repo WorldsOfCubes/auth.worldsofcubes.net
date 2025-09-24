@@ -1,0 +1,24 @@
+<div class="form-block">
+	<div class="block-header">Проект <b><a href="//worldsofcubes.net/go/project/view/<?=$proj['url']?>" onclick="self.close();" target="_blank"><? echo $proj['name'] ?></a></b> запрашивает у Вас согласие на авторизацию.</div>
+	<div class="block-line"></div>
+	<div class="tab-pane" id="launcher">
+		<div class="row">
+			<div class="col-sm-4">
+				Мы передадим на этот сайт следущую информацию:<br />
+				<i class="glyphicon glyphicon-ok"></i> Логин <i class="glyphicon glyphicon-info-sign stt" title="Если Ваш ник зарегистрирован на этом проекте, но не подключен к системе, то мы предложим выбрать другой"></i><br />
+				<i class="glyphicon glyphicon-ok"></i> ID аккаунта<br />
+				<i class="glyphicon glyphicon-ok"></i> e-mail<br />
+				<i class="glyphicon glyphicon-ok"></i> Информацию о поле<br />
+				<i class="glyphicon glyphicon-ok"></i> Сведения о верификации <i class="glyphicon glyphicon-info-sign stt" title="Если придется выбирать другой ник, то аккаунт будет помечен как неподтвержденный в любом случае"></i>
+			</div>
+			<div class="col-sm-8" style="color: #880000; font-weight: bolder">
+				Внимание! С Вас не должны требовать пароль от этого аккаунта или какие-либо другие учетные данные.Все, что нужно отсылается автоматически!<br />
+				Вам потребуется установить только пароль для входа в лончер. Рекомендуем использовать пароль, отличный от пароля от учетной записи WorldsOfCubes.
+			</div>
+		</div>
+		<form method="post">
+			<label class="checkbox"><input type="checkbox" name="hide_dialog" value="1" /> Я доверяю этому проекту. Не показывать этот диалог снова.</label>
+			<p><center><input type="hidden" name="id" value="<? echo $proj['id'] ?>"><div class="btn-group"><button class="btn btn-success btn-lg" name="token" value="<? echo md5(md5($player . $proj['security_key'])) ?>">ПРИНЯТЬ</button><button onclick="self.close();return false;" class="btn btn-danger btn-lg">ОТКЛОНИТЬ</button></div></center>
+		</form>
+	</div>
+</div>

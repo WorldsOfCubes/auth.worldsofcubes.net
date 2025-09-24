@@ -1,0 +1,30 @@
+<form action="control/network/" method="post" id="updateform" enctype="multipart/form-data">
+  <fieldset>
+    <legend>Настройки сети</legend>
+	
+	<label>Стабильная версия webMCRex:</label>
+	<span class="help-block">Тег из репозтория.</span>
+    <input type="text" class="form-control" style="width:300px" name="new_ver_mcr_stable" value="<?php echo $ver['ver_mcr_stable'] ?>">
+
+	<label>Последняя сборка webMCRex:</label>
+	<span class="help-block">Тег из репозтория.</span>
+    <input type="text" class="form-control" style="width:300px" name="new_ver_mcr_dev" value="<?php echo $ver['ver_mcr_dev'] ?>">
+
+	<label>Версия лончера для проектов на webMCRex:</label>
+	<span class="help-block">Тег из репозтория.</span>
+    <input type="text" class="form-control" style="width:300px" name="new_ver_launch" value="<?php echo $ver['ver_launch'] ?>">
+
+	<label>Текущая версия WoCAuth:</label>
+    <input type="text" class="form-control" style="width:300px" name="new_ver_sys" value="<?php echo $ver['ver_sys'] ?>">
+
+	<label class="checkbox">
+			  <input type="checkbox" name="new_wocauth_legacy_availible" value="1" <?php echo ($ver['wocauth_legacy_availible'])?'checked="checked"':'' ?>> Авторизовывать по стрым протоколам.
+	</label>
+			<span class="help-block">Через месяц-два отключить.</span>
+	
+	<br/>				 
+	
+  <button type="submit" class="btn btn-default">Изменить</button>
+  
+  </fieldset>  
+</form>

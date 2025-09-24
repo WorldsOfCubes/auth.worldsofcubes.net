@@ -1,0 +1,80 @@
+<script language="JavaScript" type="text/javascript">
+	function CheckLen() {
+
+		var s = GetById('description').value
+		s = s.replace(/\r\n/g, "22222")
+		s = s.replace(/\n/g, "22222")
+		s = s.replace(/\'/g, "222222")
+		s = s.replace(/\"/g, "222222")
+
+		return 512-s.length
+	}
+
+	function DrawLenInfo(e) {
+
+		e = e || window.event;
+
+		var code   = e.keyCode?e.keyCode:(e.which?e.which:e.charCode)
+
+		var used = CheckLen()
+
+		if ( used <= 0 ) GetById('message-length').style.color = '#aa2f17'
+		else if ( used > 482 ) GetById('message-length').style.color = '#aa2f17'
+		else             GetById('message-length').style.color = '#17aa4e'
+
+		GetById('message-length').innerHTML = used
+
+		switch (code){
+			case 13:
+			case 8:
+			case 9:
+			case 46:
+			case 37:
+			case 38:
+			case 116:
+			case 40:
+				return true;
+		}
+		if ( used <= 0 ) return false
+		else             return true
+
+	}
+</script>
+
+<?php echo $info ?>
+
+<div class="form-block">
+
+<div class="block-header">Редактирование проекта</div>
+
+<div class="block-line"></div>
+
+<form method="post" class="form-horizontal" style="text-align: center;">
+
+<p><input type="text" name="name" class="form-control ppo" title="Название проекта" data-trigger="focus" data-content="Отображается в списке проектов и на странице проекта" data-placement="bottom" placeholder="Название проекта" value="<? echo $name ?>">
+<p><input type="text" class="form-control ppo" title="ID проекта." data-trigger="focus" data-content="Уникальный идентификатор Вашего проекта." data-placement="bottom" placeholder="ID проекта" value="<? echo $project['id'] ?>" style="cursor: text" readonly>
+<p><input type="text" name="url" class="form-control ppo" title="Домен проекта" data-trigger="focus" data-content="http:// и слеш в конце писать не нужно. Только домен." data-placement="bottom" placeholder="Домен проекта без http://" value="<? echo $url ?>">
+<p><input type="text" name="path" class="form-control ppo" title="URL до скрипта-обработчика" data-trigger="focus" data-content="Полный URL включая протокол. Для webMCRex находится в woc/auth.php" data-placement="bottom" placeholder="URL до скрипта-обработчика" value="<? echo $path_sc ?>">
+<p><input type="text" name="security_key" class="form-control ppo" title="Ключ безопасности проекта" data-trigger="focus" data-content="Нужен для проверки валидности хеша" data-placement="bottom" placeholder="Ключ безопасности проекта" value="<? echo $security_key ?>">
+	<span class="help-block">Чтобы сгенерировать новый код безопасности оставьте поле пустым.</span>
+<input type="hidden" name="submit" class="form-control" value="1">
+ 
+<div class="block-line"></div>
+ 
+<div>
+ 
+     <textarea placeholder="Текст сообщения" id="description" maxlength="1024" class="form-control ppo" title="Описание проекта" data-trigger="focus" data-content="Все, что может привлечь игроков" data-placement="top" style="height:100px" name="description" onclick="return DrawLenInfo(event)" onchange="return DrawLenInfo(event)" onkeyup="return DrawLenInfo(event)" onkeypress="return DrawLenInfo(event)" ><? echo $description ?></textarea>
+ 
+</div>
+
+<div class="block-line"></div>
+
+  <div style="float: left; margin-left: 24px;">Осталось <div id="message-length" style="display: inline-block; color: #aa2f17;">512</div> символов</div>
+  <div class="pull-right">
+
+	<input type="checkbox" name="indev" value="1" <?php echo ($in_develop)?'checked="checked"':'' ?>> Скрыть проект <a class="tts glyphicon glyphicon-question-sign" title="Скрытые проекты недоступны в списке пользователей и авторизуют только своего администратора"></a>&nbsp;
+	<input id="message-button" class="btn btn-default" type="submit" value="Применить" />
+  
+  </div>
+</form>	
+</div>

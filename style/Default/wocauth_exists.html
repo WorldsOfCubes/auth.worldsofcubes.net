@@ -1,0 +1,18 @@
+<div class="form-block">
+	<div class="block-header">Проект <b><a href="//worldsofcubes.net/go/project/view/<?=$proj['url']?>" onclick="self.close();" target="_blank"><? echo $proj['name'] ?></a></b> запрашивает у Вас согласие на авторизацию.</div>
+	<div class="block-line"></div>
+	<div class="tab-pane" id="launcher">
+		<form method="post" class="form-horizontal">
+			<div class="form-block" style="color: #A94442; background-color: #F2DEDE; border-color: #EBCCD1;">
+				<div class="block-header">Ошибка</div>
+				<div class="block-line"></div>
+				<div class="tab-pane" id="launcher">
+					К сожалению, ник занят :(<br />
+					Выберите другой:
+				</div>
+			</div>
+			<input type="text" class="form-control" style="margin-top: 10px;" name="user_alt">
+			<p><center><input type="hidden" name="id" value="<? echo $proj['id'] ?>"><div class="btn-group"><button class="btn btn-success btn-lg" name="token" value="<? echo md5(md5($player . $proj['security_key'])) ?>">ПРИНЯТЬ</button><button onclick="self.close();return false;" class="btn btn-danger btn-lg">ОТКЛОНИТЬ</button></div></center>
+		</form>
+	</div>
+</div>

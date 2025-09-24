@@ -1,0 +1,8 @@
+<div class="form-block">
+	<div class="block-header">Доступ к добавлению проектов заблокирован :(</div>
+	<div class="block-line"></div>
+	<div class="tab-pane" id="launcher">
+		К сожалению, пользователь <a href="go/user/profile/<?=$ban['admin']?>"><?=$ban['admin']?></a> заблокировал Вам доступ <?=($ban['type']==2)?'навсегда':'до '.$ban['temptime']?>.<br>
+		<b>Причина:</b> <?=$ban['reason']?>
+	</div>
+</div>

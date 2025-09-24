@@ -1,0 +1,46 @@
+<div class="form-block">
+	<div class="block-header">
+		<?=$project['name'] ?>
+	</div>
+	<div class="block-line"></div>
+	<div class="tab-pane" id="launcher">
+		<div class="row">
+			<div class="col-md-4">
+				<a href="http://<?=$project['url'] ?>" target="_blank" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-globe"></i> Посетить сайт</a>
+				<a href="go/WoCAuth?proj_id=<?=$project['id'] ?>" target="_blank" class="btn btn-info btn-block"><i class="glyphicon glyphicon-log-in"></i> Войти на сайт</a>
+				<a href="go/project/edit/<?=$project['id'] ?>" class="btn btn-warning btn-block"><i class="glyphicon glyphicon-edit"></i> Редактировать</a>
+				<form method="post" action="go/projects">
+					<input type="hidden" name="wocid" value="<?php echo $project['id'] ?>">
+					<button type="submit" value="1" title="Удалить" name="delete" style="margin-top: 5px" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-remove"></i> Удалить</button>
+				</form>
+			</div>
+			<div class="col-md-8">
+				<p><?=$project['about'] ?></p>
+				<h4>На этом проекте играют</h4>
+				<?=$pr?>
+				<div class="row">
+					<div class="col-md-4">
+						<?=$pl[0] ?>
+					</div>
+					<div class="col-md-4">
+						<?=$pl[1] ?>
+					</div>
+					<div class="col-md-4">
+						<?=$pl[2] ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<?=$pl[3] ?>
+					</div>
+					<div class="col-md-4">
+						<?=$pl[4] ?>
+					</div>
+					<div class="col-md-4">
+						<?=$pl[5] ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

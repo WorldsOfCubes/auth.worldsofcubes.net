@@ -1,0 +1,99 @@
+<script language="JavaScript" type="text/javascript">
+	function CheckLen() {
+
+		var s = GetById('description').value
+		s = s.replace(/\r\n/g, "22222")
+		s = s.replace(/\n/g, "22222")
+		s = s.replace(/\'/g, "222222")
+		s = s.replace(/\"/g, "222222")
+
+		return 512-s.length
+	}
+
+	function DrawLenInfo(e) {
+
+		e = e || window.event;
+
+		var code   = e.keyCode?e.keyCode:(e.which?e.which:e.charCode)
+
+		var used = CheckLen()
+
+		if ( used <= 0 ) GetById('comment-length').style.color = '#aa2f17'
+		else if ( used > 482 ) GetById('comment-length').style.color = '#aa2f17'
+		else             GetById('comment-length').style.color = '#17aa4e'
+
+		GetById('comment-length').innerHTML = used
+
+		switch (code){
+			case 13:
+			case 8:
+			case 9:
+			case 46:
+			case 37:
+			case 38:
+			case 116:
+			case 40:
+				return true;
+		}
+		if ( used <= 0 ) return false
+		else             return true
+
+	}
+</script>
+
+<div style="display: none; margin-bottom: 5px;" id="project-add-error">
+	<div class="alert alert-danger" id="project-add-error-text">Вы не авторизованы</div>
+</div>
+
+<div class="panel-group" id="accordion2">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a class="accordion-toggle">
+					<i class="fa fa-tasks" id="update-status-icon"></i><strong>&nbsp&nbsp Заполните базовую информацию о проекте.</strong>
+				</a>
+			</h4>
+		</div>
+		<div id="collapseOne" class="panel-collapse collapse in">
+			<div class="panel-body">
+				<strong>Все поля обязательны к заполнению!</strong> <br />
+				<form method="post" onsubmit="SubmitNewProject();return false;" action="action.php" id="project-add">
+					<input type="hidden" name="method" value="project_add">
+					<div align="left"><label><strong>Название проекта:</strong></label></div>
+					<input class="form-control" class="find1" type="text" size="50" name="proj_name" placeholder="Полное название Вашего проекта"/>
+					<div align="left"><label><strong>Домен проекта:</strong></label></div>
+					<input class="form-control" class="find1" type="text" size="50" name="proj_url" placeholder="Домен БЕЗ http(s)://"/>
+
+					<div align="left"><label><strong>Краткое описние проекта:</strong></label></div>
+					<textarea id="description" maxlength="512" class="form-control" name="proj_description" onclick="return DrawLenInfo(event)" onchange="return DrawLenInfo(event)" onkeyup="return DrawLenInfo(event)" onkeypress="return DrawLenInfo(event)" placeholder="То, что может привлечь игроков"></textarea>
+					<div style="margin-left: 24px;">Осталось <div id="comment-length" style="display: inline-block; color: #aa2f17;">512</div> символов</div>
+					<p>Отправляя заявку Вы соглашаетесь с <a href="go/rules">правилами проекта для дочерних проектов</a></p>
+					<input class="btn btn-primary btn-block" type="submit" value="Отправить" name="submit" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a class="accordion-toggle">
+					<i class="fa fa-cog"></i><strong>&nbsp&nbsp Настройте WoCAuth на Вашей стороне</strong>
+				</a>
+			</h4>
+		</div>
+		<div id="collapseTwo" class="panel-collapse collapse">
+			<div class="panel-body">
+				Отлично! Ваш проект добавлен в базу данных. Теперь пора настроить Ваш сайт на работу с ней. Мы рекомендуем просто установить нашу CMS webMCRex. Это сделать очень просто.<br>
+				<p>Загрузите на сервер дистрибутив webMCRex 2.0 или новее. При установке выберите конфигурацию "авторизация по протоколу WoCAuth", после чего нажмите "Изменить тип установки", после чего как обычно заполните параметры подключения к БД.</p>
+				<img src="<?php View::URL('img/ex.png') ?>" style="max-width: 100%;" /><br>
+				<p>На следущем шаге Вас попросят ввести ID и ключ безопасности Вашего проекта. Для этого, свежесозданного проекта это будут:
+					<ul>
+						<li><b>ID</b>: <font id="project-add-id"></font></li>
+						<li><b>Ключ безопасности</b>: <font id="project-add-key"></font></li>
+					</ul>
+				А теперь пора донастроить Ваш проект - поправить url скрипта-обработчика (не требуется, если вы пользуетесь webMCRex и Вы не используете HTTPS) и сделать его видным публике!
+				<a class="btn btn-primary btn-lg btn-block" href="#" id="new-project-link">Перейти в настройки Вашего нового проекта</a>
+			</div>
+		</div>
+	</div>
+</div>

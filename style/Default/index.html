@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+	
+    <title><?php echo $config['s_name'] ?> — <?php echo $page; ?> </title>
+	
+	<base href="<?php echo BASE_URL ?>"> 
+	
+	<style>
+		.jumbotron:after {
+			background: url("/<? echo View::URL("img/$logoHeader.png") ?>") no-repeat;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <meta name="description" content="<?php echo $config['s_about'] ?>">
+    <meta name="author" content="STRELOK2022">
+
+    <link href="<?php View::URL('css/style.css') ?>" rel="stylesheet">
+	<link href="<?php View::URL('css/serverbar.css') ?>" rel="stylesheet">
+	<link href="<?php View::URL('css/datepicker3.css') ?>" rel="stylesheet">
+	<link href="<?php View::URL('css/font-awesome.css') ?>" rel="stylesheet">
+
+	<script src="<?php View::URL('js/jquery.js') ?>"></script>
+	<script src="<?php View::URL('js/smiles.js') ?>"></script>	
+	<script src="<?php View::URL('js/tools.js') ?>"></script>
+
+	<script src="<?php View::URL('js/ajax.js') ?>"></script>
+	
+	<script src="<?php View::URL('js/bootstrap.js') ?>"></script>
+	<script src="<?php View::URL('js/bootstrap-datepicker.js') ?>"></script>
+	<script src="<?php View::URL('js/locales/bootstrap-datepicker.ru.js') ?>"></script>
+
+	<?php echo $content_js ?>
+	
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="instruments/rss20/rss.php" />
+	
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="<?php View::URL('ico/favicon.ico') ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php View::URL('ico/apple-touch-icon-144-precomposed.png') ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php View::URL('ico/apple-touch-icon-114-precomposed.png') ?>">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php View::URL('ico/apple-touch-icon-72-precomposed.png') ?>">
+    <link rel="apple-touch-icon-precomposed" href="<?php View::URL('ico/apple-touch-icon-57-precomposed.png') ?>">
+	
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation" >
+
+	<div class="navbar-header">
+		<div class="container">
+			<a class="navbar-brand" href="//worldsofcubes.net" onclick="self.close();" target="_blank"><img alt="" style="margin-top: -4px;" src="<? echo View::URL("img/$logoHeader.png") ?>"> <?php echo $config['s_name'] ?></a>
+<?if($user and $user->lvl()>0):?>
+			<ul class="nav navbar-nav pull-right">
+
+				<li><a href="//worldsofcubes.net/go/options" onclick="self.close();" target="_blank"><img src="//worldsofcubes.net/skin.php?mini=<?=$user->id()?>" height="20px;"> <?=$user->name()?></a></li>
+
+			</ul>
+<?endif?>
+		</div>
+	</div>
+
+</nav>
+<div class="container" style="margin-bottom: 50px;">	
+    <div class="container">
+				    <?php echo $content_main;?>
+    </div> 
+</div>
+	<!-- /container -->
+<footer class="footer-block">
+
+	<div style="float: right; text-align: right;">&copy;WorldsOfCubes Team 2013-<?=date("Y")?></div>
+	WoCAuth v4.0
+</footer>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<div class="form-block">
+	<div class="block-header">Профиль пользователя <? echo $pl->name(); ?></div>
+	<div class="block-line"></div>
+	<div class="tab-pane" id="launcher">
+		<div class="row">
+			<div class="col-md-4">
+				<img width="100%" src="skin.php?mini=<? echo $pl->id(); ?>">
+				<?php if($user and $user->lvl() > 0): ?>
+					<a href="/go/pm/write/<? echo $pl->name(); ?>" class="btn btn-primary btn-block" style="margin-top: 5px"><i class="glyphicon glyphicon-pencil"></i> Написать ЛС</a>
+						<a href="<?php echo (!$config['rewrite'])? '?mode=warnings&user=' . $pl->name(): 'go/warnings/' . $pl->name() ?>" class="btn btn-warning btn-block" style="margin-top: 5px"><i class="glyphicon glyphicon-warning-sign"></i> Предупреждения</a>
+					<?php if($user->lvl() >= 15): ?>
+						<a href="?mode=control&do=profile&user_id=<? echo $pl->id(); ?>" class="btn btn-danger btn-block" style="margin-top: 5px"><i class="glyphicon glyphicon-edit"></i> Править пользователя</a>
+					<?php endif ?>
+				<?php endif ?>
+			</div>
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Никнейм:</b></div>
+					<div class="col-md-8">
+						<? echo $pl->name(); ?><?php if($pl->verified()): ?>&nbsp;<div class="label label-success stt" data-toggle="tooltip" data-placement="top" title="Подтвержденный ник"><i class="glyphicon glyphicon-ok"></i></div><? endif; ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Группа:</b></div>
+					<div class="col-md-8">
+						<? echo $pl->getGroupName(); ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Уровень предупреждений:</b></div>
+					<div class="col-md-8">
+						<? echo $pl->warnLVL(); ?>%
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Дата регистрации:</b></div>
+					<div class="col-md-8">
+						<? echo ($pl->getStatisticTime('create_time')) ? $pl->getStatisticTime('create_time') : 'Неизвестно'; ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Комментарии:</b></div>
+					<div class="col-md-8">
+						<? echo (int) $stat['comments_num']; ?></div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Тем:</b></div>
+					<div class="col-md-8">
+						<? echo (int) $pl->topics(); ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4" align="right"><b>
+						Сообщений на форуме:</b></div>
+					<div class="col-md-8">
+						<? echo (int) $pl->posts(); ?>
+					</div>
+				</div>
+
+				<h4><b>Проекты, на которых играет пользователь</b></h4>
+				<ul class="nav nav-list"><?=$pr;?></ul>
+			</div>
+		</div>
+	</div>
+</div>

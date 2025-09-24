@@ -1,0 +1,20 @@
+<div class="form-block">
+<div class="block-header">Блокировка доступа к добавлению проектов</div>
+<div class="block-line"></div>
+<div class="tab-pane" id="launcher">
+	<?php echo $content; ?>
+	<strong>Все поля обязательны к заполнению!</strong> <br />
+	<form method="post">
+		<div align="left"><label><strong>Никнейм:</strong></label></div>
+		<input class="form-control" class="find1" type="text" size="50" name="name" placeholder="Логин пользователя"/>
+		<div align="left"><label><strong>Дата разбана:</strong></label></div>
+		<input class="form-control" class="find1" id="datepicker" type="date" size="50" name="temptime" placeholder="ГГГГ-ММ-ДД"/>
+		<div align="left"><label><strong>Причина:</strong></label></div>
+		<input class="form-control" class="find1" type="text" size="50" name="reason" placeholder="Напишите причину. Отображается в банлисте и пользователю"/>
+		<label class="checkbox">
+			<input type="checkbox" name="temp" value="1"> Перманентно
+		</label>
+		<input class="btn btn-primary btn-block" type="submit" value="Отправить" name="submit" />
+	</form>
+</div>
+</div>
